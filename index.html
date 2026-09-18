@@ -22,10 +22,10 @@ main{padding:10px 18px}.section-title{display:flex;justify-content:space-between
 <body>
 <div class="app">
 <header class="hero"><div class="eyebrow">TAITUNG ROAD TRIP · MOBILE ITINERARY</div><h1>台東海線・南迴<br>三日旅遊 App</h1><p>行程總覽 × 逐日時間軸 × 彈性備案 × 餐廳實拍</p></header>
-<div class="notice">⚠️ 資料檔日期標示為 <b>10/9–10/11</b>（檔名為 10.8-10.10）。本 App 依檔案原文製作，沒有自行平移日期。</div>
+<div class="notice">⚠️ <b>10/8 晚上抵達台東</b>；10/8 晚餐尚未選擇。10/9–10/11 為主要旅遊行程。</div>
 <div class="days" id="days"></div>
 <main>
-<section id="overview" class="page active"><div class="section-title"><h2>行程總覽</h2><small>點日期看完整時間軸</small></div><div class="summary"><div class="stat"><strong>3</strong><small>天行程</small></div><div class="stat"><strong>17+</strong><small>主要節點</small></div><div class="stat"><strong>彈性</strong><small>餐廳／咖啡可替換</small></div></div><div id="overviewCards"></div></section>
+<section id="overview" class="page active"><div class="section-title"><h2>行程總覽</h2><small>點日期看完整時間軸</small></div><div class="summary"><div class="stat"><strong>4</strong><small>日曆天</small></div><div class="stat"><strong>17+</strong><small>主要節點</small></div><div class="stat"><strong>彈性</strong><small>餐廳／咖啡可替換</small></div></div><div id="overviewCards"></div></section>
 <section id="timeline" class="page"><div class="section-title"><h2 id="timelineTitle">逐日時間軸</h2><small id="timelineSub"></small></div><div class="timeline" id="timelineList"></div></section>
 <section id="flex" class="page"><div class="section-title"><h2>彈性模式</h2><small>不想趕行程就從這裡調整</small></div><div class="flex"><h3>🧭 今日自由度</h3><p class="desc">原檔已標示「請擇一」「視時間」「如果還飽就不用去」的節點，保留成可勾選選項。</p><label class="choice"><input type="checkbox" checked><span><b>餐廳二選一／三選一</b><p>午餐、咖啡、晚餐、飲品依胃口與營業狀況切換。</p></span></label><label class="choice"><input type="checkbox" checked><span><b>黃金時刻只挑 2–3 個點</b><p>半月灣、都蘭觀海平台、加母子灣、杉原灣不必全部跑完。</p></span></label><label class="choice"><input type="checkbox" checked><span><b>南迴「吃飽可跳過」</b><p>原檔註明海癒小村若還飽可以不去，直接進下一段。</p></span></label><label class="choice"><input type="checkbox" checked><span><b>晚上回市區再決定</b><p>鐵花村、波浪屋、吧蟲放在回程後，依時間與體力選擇。</p></span></label></div><div class="section-title"><h2>備用口袋名單</h2></div><div id="backup"></div></section>
 <section id="food" class="page"><div class="section-title"><h2>餐廳 & 餐點</h2><small>實拍圖＋地址</small></div><div class="food-grid" id="foodGrid"></div><p class="source">照片使用公開網頁上的店家／食記實拍圖片；地址以公開店家資料或官方觀光資料交叉整理。實際營業狀況請出發前再確認。</p></section>
@@ -44,6 +44,12 @@ sophie:"https://resize-image.vocus.cc/resize?norotation=true&quality=80&sign=PP2
 };
 const maps=n=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(n);
 const days=[
+{id:"d0",date:"10/8",title:"抵達台東・入住",theme:"晚上抵達｜晚餐尚未選擇",items:[
+{t:"晚上",name:"抵達台東",type:"drive",desc:"10/8 晚上抵達台東，先入住與安頓。",addr:"臺東市區／住宿地點依訂房資料"},
+{t:"晚餐",name:"晚餐｜尚未選擇",type:"food",desc:"保留空白，不預設餐廳；抵達後再依住宿位置、時間與當天體力決定。",addr:"待決定",opts:["尚未選擇餐廳","抵達後再決定"]},
+{t:"晚上",name:"休息",type:"spot",desc:"早點休息，隔天開始都蘭海線行程。",addr:"住宿地點"}
+]},
+
 {id:"d1",date:"10/9",title:"台東・都蘭一日遊",theme:"海線、咖啡、海灣黃金時刻",items:[
 {t:"11:30–13:00",name:"午餐｜請擇一",type:"food",desc:"哇哇哇大骨麵／飽食東日 DiginTaitung。原檔設定為午餐二選一。",addr:"哇哇哇：臺東縣東河鄉都蘭村都蘭346-3號2樓；飽食東日：臺東縣東河鄉都蘭145-21號",img:img.wow,opts:["哇哇哇大骨麵｜大骨麵、豬肉麵、滷味","飽食東日｜每週限定創意義大利麵"]},
 {t:"13:30–15:00",name:"午後咖啡廳｜請擇一",type:"cafe",desc:"海廢咖啡工作室或髒孩子｜海邊肉桂捲．咖啡。",addr:"海廢：959臺東縣東河鄉181號；髒孩子：臺東縣東河鄉隆昌村隆昌路5鄰54號",img:img.dirty,opts:["海廢咖啡工作室｜咖啡、甜點","髒孩子｜經典肉桂捲、海鹽奶蓋可可捲、拿鐵"]},
@@ -75,7 +81,23 @@ let selectedDay=days[0];
 const daysEl=document.querySelector("#days");
 days.forEach((d,i)=>{const b=document.createElement("button");b.className="day"+(i===0?" active":"");b.innerHTML="<b>Day "+(i+1)+" · "+d.date+"</b><span>"+d.title+"</span>";b.onclick=()=>{selectedDay=d;document.querySelectorAll(".day").forEach(x=>x.classList.remove("active"));b.classList.add("active");showPage("timeline");renderTimeline()};daysEl.appendChild(b)});
 function card(x){let imgTag=x.img?'<img class="photo" src="'+x.img+'" alt="'+x.name+'" loading="lazy">':"";let kind=x.type==="food"?"🍜 美食":x.type==="cafe"?"☕ 咖啡":x.type==="flex"?"✨ 彈性":x.type==="spot"?"🌊 景點":x.type==="drive"?"🚗 車程":"🛍️ 採買";let opts=(x.opts||[]).join("\n")||"此節點無替換選項";return '<article class="card">'+imgTag+'<div class="content"><span class="tag">'+kind+'</span><div class="time">'+x.t+'</div><div class="title">'+x.name+'</div><div class="desc">'+x.desc+'</div><div class="addr">📍 '+x.addr+'</div><div class="actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x.addr)+'">Google 導航</a><button class="action" onclick="alert('+JSON.stringify(opts)+')">看選項</button></div></div></article>'}
-function renderOverview(){document.querySelector("#overviewCards").innerHTML=days.map((d,i)=>'<div class="card"><div class="content"><span class="tag">DAY '+(i+1)+' · '+d.date+'</span><div class="title">'+d.title+'</div><div class="desc">'+d.theme+'</div><div class="addr">⏱ '+d.items.length+' 個時間節點 · 🚗 自駕</div><div class="actions"><button class="action primary" onclick="selectedDay=days['+i+'];document.querySelectorAll(\\'.day\\').forEach((x,j)=>x.classList.toggle(\\'active\\',j==='+i+'));showPage(\\'timeline\\');renderTimeline()">查看時間軸</button></div></div></div>').join("")}
+function renderOverview(){
+  document.querySelector("#overviewCards").innerHTML = days.map((d,i) =>
+    '<div class="card"><div class="content"><span class="tag">DAY '+(i+1)+' · '+d.date+
+    '</span><div class="title">'+d.title+'</div><div class="desc">'+d.theme+
+    '</div><div class="addr">⏱ '+d.items.length+' 個時間節點 · 🚗 自駕</div>'+
+    '<div class="actions"><button class="action primary overview-day-btn" data-day="'+i+'">查看時間軸</button></div></div></div>'
+  ).join("");
+  document.querySelectorAll(".overview-day-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const i = Number(btn.dataset.day);
+      selectedDay = days[i];
+      document.querySelectorAll(".day").forEach((x,j) => x.classList.toggle("active", j === i));
+      showPage("timeline");
+      renderTimeline();
+    });
+  });
+}
 function renderTimeline(){document.querySelector("#timelineTitle").textContent=selectedDay.date+"｜"+selectedDay.title;document.querySelector("#timelineSub").textContent=selectedDay.theme;document.querySelector("#timelineList").innerHTML=selectedDay.items.map(x=>'<div class="item"><span class="dot"></span>'+card(x)+'</div>').join("")}
 function renderFood(){const foods=[];days.forEach(d=>d.items.forEach(x=>{if(x.type==="food"||x.type==="cafe")foods.push(x)}));document.querySelector("#foodGrid").innerHTML=foods.map(x=>'<article class="food-card"><img src="'+(x.img||img.seafood)+'" alt="'+x.name+'" loading="lazy"><div class="fc"><h3>'+x.name+'</h3><p>'+x.addr+'</p><p class="source">公開網頁實拍圖；時間軸內有完整餐點選項</p></div></article>').join("")}
 function renderBackup(){document.querySelector("#backup").innerHTML=backup.map(x=>'<div class="card"><div class="content"><span class="tag">備案</span><div class="title">'+x[0]+'</div><div class="desc">'+x[1]+'</div><div class="addr">📍 '+x[2]+'</div><div class="actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x[0]+" "+x[2])+'">導航</a></div></div></div>').join("")}
