@@ -27,7 +27,7 @@ main{padding:10px 18px}.section-title{display:flex;justify-content:space-between
 <main>
 <section id="timeline" class="page active"><div class="section-title"><h2 id="timelineTitle">逐日時間軸</h2><small id="timelineSub"></small></div><div class="timeline" id="timelineList"></div></section>
 <section id="flex" class="page"><div class="section-title"><h2>彈性模式</h2><small>不想趕行程就從這裡調整</small></div><div class="flex"><h3>🧭 今日自由度</h3><p class="desc">原檔已標示「請擇一」「視時間」「如果還飽就不用去」的節點，保留成可勾選選項。</p><label class="choice"><input type="checkbox" checked><span><b>餐廳二選一／三選一</b><p>午餐、咖啡、晚餐、飲品依胃口與營業狀況切換。</p></span></label><label class="choice"><input type="checkbox" checked><span><b>黃金時刻只挑 2–3 個點</b><p>半月灣、都蘭觀海平台、加母子灣、杉原灣不必全部跑完。</p></span></label><label class="choice"><input type="checkbox" checked><span><b>南迴「吃飽可跳過」</b><p>原檔註明海癒小村若還飽可以不去，直接進下一段。</p></span></label><label class="choice"><input type="checkbox" checked><span><b>晚上回市區再決定</b><p>鐵花村、波浪屋、吧蟲放在回程後，依時間與體力選擇。</p></span></label></div><div class="section-title"><h2>備用口袋名單</h2></div><div id="backup"></div></section>
-<section id="food" class="page"><div class="section-title"><h2>餐廳 & 餐點</h2><small>實拍圖＋地址</small></div><div class="food-grid" id="foodGrid"></div><p class="source">照片使用公開網頁上的店家／食記實拍圖片；地址以公開店家資料或官方觀光資料交叉整理。實際營業狀況請出發前再確認。</p></section>
+<section id="food" class="page"><div class="section-title"><h2>餐廳 & 餐點</h2><small>餐點實拍＋地址</small></div><div class="food-grid" id="foodGrid"></div><p class="source">照片使用公開網頁上的店家／食記實拍圖片；地址以公開店家資料或官方觀光資料交叉整理。實際營業狀況請出發前再確認。</p></section>
 </main></div>
 <nav class="bottom"><button class="nav active" data-page="timeline"><span class="ico">🗺️</span>行程</button><button class="nav" data-page="flex"><span class="ico">✨</span>彈性</button><button class="nav" data-page="food"><span class="ico">🍜</span>美食</button></nav>
 <script>
@@ -39,7 +39,7 @@ bbq:"https://images.openai.com/static-rsc-1/OcJTBQ_dhiLxt_R9_SCpyts38B5VpwEkzQq6
 sashimi:"https://pimg.1px.tw/wu840531wu890515/1675683814-1256165128-g.jpg",
 daluan:"https://static.styletc.com/images/content/98/257098/e0df5b40914a3635c33b709bc8c99373.JPG",
 oddo:"https://disk.sharelife.tw/gallery/63234-133065/0a68240222294915.jpg",
-sophie:"https://www.bring-you.info/imgs/2015/08/%E5%8F%B0%E6%9D%B1%E5%BF%85%E5%90%83%E7%BE%8E%E9%A3%9F%E8%98%87%E8%8F%B2%E7%9A%84%E5%B0%8F%E9%85%92%E9%A4%A8-3.jpg"
+sophie:"https://www.bring-you.info/imgs/2015/08/%E5%8F%B0%E6%9D%B1%E5%BF%85%E5%90%83%E7%BE%8E%E9%A3%9F%E8%98%87%E8%8F%B2%E7%9A%84%E5%B0%8F%E9%85%8F%E9%A4%A8-4.jpg"
 };
 const maps=n=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(n);
 const days=[
@@ -50,13 +50,11 @@ const days=[
 ]},
 
 {id:"d1",date:"10/9",title:"台東・都蘭一日遊",theme:"海線、咖啡、海灣黃金時刻",items:[
-{t:"11:30–13:00",name:"午餐｜二選一",type:"food",desc:"兩間餐廳完整列出；哇哇哇是都蘭的大骨麵小吃，飽食東日則是週末限定、每週更換創意義大利麵。10/9 為星期五，飽食東日目前公開資料顯示週五休息，因此請以最新公告為準。",addr:"都蘭地區",choices:[
-{name:"哇哇哇大骨麵",detail:"招牌是份量很大的豬骨麵，另有豬肉麵、炸醬麵、湯麵、滷味與小菜；大骨以長時間熬煮呈現濃郁湯頭。",address:"959 臺東縣東河鄉都蘭346-3號二樓",hours:"公開資料：11:00–14:10；部分資料列週一至日另有晚間時段，出發前確認",phone:"089-531-040",img:"https://nash.tw/wp-content/uploads/20210325011032_2-scaled.jpg",available:"10/9 午餐可選"},
-{name:"飽食東日 DiginTaitung",detail:"小型義大利麵餐廳，每週限定創意義大利麵，食材依當週菜單變化；公開食客資料常提到蝦類與新鮮食材。",address:"959 臺東縣東河鄉145-21號",hours:"目前公開資料：週六 11:00–13:00、17:30–19:30；週日 11:00–13:00；週一至週五休息",phone:"0953-829-882",img:"https://images.openai.com/static-rsc-1/S2wOeZq4bKwpEAOHLqaShT6VboseRe7PHBzpSDyxo1O9X1GdppzvRhE3QHF-9Jyz4bDcT0M4OSRhNk2VqUI0PI2oTQBE7gdk51s5gqcnP3zKlAG1pphkC9rD_39lSHx63umQsBkyM3HG1zB_6mdG7FTAHgu_GfUaW96OCyGFp70",available:"10/9（五）公開資料顯示休息"}
-]},
+{t:"11:30–13:00",name:"午餐｜哇哇哇大骨麵",type:"food",desc:"10/9 午餐改成固定安排，不再顯示已刪除的飽食東日。哇哇哇大骨麵位於都蘭，招牌是大骨麵，也有豬肉麵、炸醬麵、湯麵、滷味與小菜。",addr:"959 臺東縣東河鄉都蘭346-3號二樓",choices:[
+{name:"哇哇哇大骨麵",detail:"招牌大骨麵以豬骨長時間熬煮湯頭，另有豬肉麵、炸醬麵、湯麵、滷味與小菜；適合當作都蘭海線第一餐。",address:"959 臺東縣東河鄉都蘭346-3號二樓",hours:"公開資料約11:00–14:10；部分資料另列晚間時段，出發前確認",phone:"089-531-040",img:"https://nash.tw/wp-content/uploads/20210325011032_2-scaled.jpg",available:"午餐固定安排"}]},
 {t:"13:30–15:00",name:"午後咖啡／甜點｜二選一",type:"cafe",desc:"都蘭午後放慢速度。兩間店都保留完整地址與特色，依當天開店狀況選擇。",addr:"都蘭／隆昌地區",choices:[
-{name:"海廢咖啡工作室 Aqua Cafe",detail:"以海廢再生、海岸生活與咖啡為特色的小型咖啡空間，適合安排短暫休息、喝咖啡與吃甜點。",address:"959 臺東縣東河鄉181號",hours:"公開地圖資料顯示營業時間依店家公告",phone:"0920-517-863",img:"https://images.openai.com/static-rsc-1/FJI0B9p8SkG0AoWQKR2ERZOsbBdzK8r8kgYEzjd6V0CmnP5KNjOQOzu84s-RWwo_KIad6bGeWMjcQEHkbk0mB_a971F7Vt0sV9M_fK3I-A3cmoJ0ul51lEEvYrFd_zBnh63bx4dbiPSNcojSoyQG7oMM0Z_eN3AYihHmuT4iwKI"},
-{name:"髒孩子工作室",detail:"隆昌一帶的人氣咖啡甜點小店，以肉桂捲為代表；可搭配咖啡、茶與其他甜點，適合當作都蘭海線的下午點心。",address:"959 臺東縣東河鄉隆昌路5鄰54號",hours:"公開地圖資料：週一、週四至週日 11:00–17:00；實際以店家公告為準",phone:"0989-567-634",img:"https://images.openai.com/static-rsc-1/V0O-xhxIC5sKgWmtGaIEIa8054wP7fnnp_77iZcrFmENLaH757bOCtnCymS1X91AJocU5GpZfAvMD0SGgckXxpn_a4c49VgVQnyVqggMsf7TgU896DFA1yak3JRi1vch9eTgOAv4ol3tANLPIGUEttjVT6qaij2ba--H1h2ufR0"}
+{name:"海廢咖啡工作室 Aqua Cafe",detail:"以海廢再生、海岸生活與咖啡為特色的小型咖啡空間，適合安排短暫休息、喝咖啡與吃甜點。",address:"959 臺東縣東河鄉181號",hours:"公開地圖資料顯示營業時間依店家公告",phone:"0920-517-863",img:"https://cdn.walkerland.com.tw/images/upload/article/2022/11/m53035/78edd3cbabfd4c524290c627465aaa9fefb3181f.jpg"},
+{name:"髒孩子工作室",detail:"隆昌一帶的人氣咖啡甜點小店，以肉桂捲為代表；可搭配咖啡、茶與其他甜點，適合當作都蘭海線的下午點心。",address:"959 臺東縣東河鄉隆昌路5鄰54號",hours:"公開地圖資料：週一、週四至週日 11:00–17:00；實際以店家公告為準",phone:"0989-567-634",img:"https://assets.poponote.app/note/637b373c4be8020ce0856957/media/637b373c4be802413f85695a"}
 ]},
 {t:"15:00–15:25",name:"胖茶台東都蘭店",type:"shop",desc:"都蘭在地茶飲／選物停留點，適合買飲品、茶品或伴手禮；實際店址與營業時間依店家當日公告。",addr:"臺東縣東河鄉都蘭地區"},
 {t:"15:25–15:55",name:"出力釀",type:"spot",desc:"都蘭阿美族青年返鄉創立的傳統釀酒工坊，以糯米、酒麴與在地藥草延續傳統釀造；若有開放參觀，可了解蒸米、壓榨與發酵流程。",addr:"公司登記：臺東縣東河鄉都蘭村都蘭路308號；工廠登記：臺東縣東河鄉都蘭村61號"},
@@ -68,7 +66,7 @@ const days=[
 {t:"18:30",name:"晚餐｜四選一",type:"food",desc:"晚餐四間完整列出。海人上菜偏台式創意海鮮；都蘭院子為戶外 BBQ；蘇菲的小酒館採預約制；打鹿岸則以原住民族風味與大型合菜／風味餐為主。",addr:"都蘭／台東市區",choices:[
 {name:"海人上菜",detail:"都蘭台式創意料理，常見海鮮、烤魚、中卷、蝦類與當日食材料理，適合多人分食；建議事先電話確認當日菜單與座位。",address:"95941 臺東縣東河鄉445-5號之1，台11線144K處",hours:"公開資料有午餐與晚餐時段，實際依店家公告",phone:"0909-545-187",img:"https://pimg.1px.tw/eateatforfun/1683812216-2892607720-g.jpg"},
 {name:"都蘭院子大BBQ燒烤",detail:"位於新東糖廠文化園區旁的戶外 BBQ，適合多人一起點烤肉、海鮮與蔬菜，在樹下與燈串環境用餐。",address:"959 臺東縣東河鄉台11線145.3K新東糖廠文化園區，都蘭糖廠斜對面、加油站隔壁",hours:"公開資料：平日約17:30–20:30；週末約17:00–21:00",phone:"0938-529-681",img:"https://images.openai.com/static-rsc-1/OcJTBQ_dhiLxt_R9_SCpyts38B5VpwEkzQq6RNAy8XrG9hq9dSkAPZAq_q1gVlU6uN-1Q7PcofIfsCSK3lX95WKRmkN0X-MhUMy9mpntDv8yX4MTCc_X6Pzi_5eViErCH9bPQb6LULyxST3OTg8aLTOeuKHZEqsvTw3ny8n1QX8"},
-{name:"蘇菲的小酒館",detail:"都蘭山坡上的小型餐酒館，店主夫妻經營，菜單依當日食材變化；公開資料明確提到需事先預約、訂餐，適合安排成有預約才前往的晚餐。",address:"臺東縣東河鄉都蘭村新社路46鄰33-1號",hours:"公開資料：17:30–22:00，週三休；需預約訂位訂菜",phone:"0958-964-773／0987-090-050",img:"https://www.bring-you.info/imgs/2015/08/%E5%8F%B0%E6%9D%B1%E5%BF%85%E5%90%83%E7%BE%8E%E9%A3%9F%E8%98%87%E8%8F%B2%E7%9A%84%E5%B0%8F%E9%85%92%E9%A4%A8-3.jpg"},
+{name:"蘇菲的小酒館",detail:"都蘭山坡上的小型餐酒館，店主夫妻經營，菜單依當日食材變化；公開資料明確提到需事先預約、訂餐，適合安排成有預約才前往的晚餐。",address:"臺東縣東河鄉都蘭村新社路46鄰33-1號",hours:"公開資料：17:30–22:00，週三休；需預約訂位訂菜",phone:"0958-964-773／0987-090-050",img:"https://www.bring-you.info/imgs/2015/08/%E5%8F%B0%E6%9D%B1%E5%BF%85%E5%90%83%E7%BE%8E%E9%A3%9F%E8%98%87%E8%8F%B2%E7%9A%84%E5%B0%8F%E9%85%8F%E9%A4%A8-4.jpg"},
 {name:"打鹿岸原住民人文主題餐廳",detail:"以原住民族文化為主題的餐廳，餐點可見海鮮、烤物、肉類、蔬菜與拼盤式風味餐，適合多人聚餐；前往前確認當日營業與預約規則。",address:"950 臺東縣臺東市吉林路二段590號",hours:"依店家最新公告",phone:"089-281-806",img:"https://static.styletc.com/images/content/98/257098/e0df5b40914a3635c33b709bc8c99373.JPG"}
 ]}
 ]},
@@ -97,19 +95,24 @@ const days=[
 {t:"17:50–18:30",name:"傻師傅湯包金崙店",type:"food",desc:"以湯包、蒸點與湯品為主的快速小吃選項；若前兩站已吃飽可直接跳過。實際分店營業資訊請當天確認。",addr:"臺東縣太麻里鄉金崙村市區",choices:[
 {name:"傻師傅湯包金崙店",detail:"湯包與蒸點型小吃，適合當作金崙路段的最後一份熱食；建議少量點餐。",address:"臺東縣太麻里鄉金崙村市區",hours:"依店家當日公告",phone:"—",img:"https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=1200&q=80",available:"小吃"},
 ]},
-{t:"晚間",name:"回台東市區｜慢市集／波浪屋／吧蟲",type:"flex",desc:"回到市區後可先逛鐵花村慢市集與波浪屋；若時間、體力與營業時間允許，再安排酒吧。這段不固定正餐，避免行程過滿。",addr:"鐵花村：台東市鐵花路一帶；台東波浪屋：台東市區；Bar Cynic 吧蟲：950臺東市和平街118號",choices:[
-{name:"Bar Cynic 吧蟲",detail:"台東市區夜間酒吧，適合把最後一段安排成飲品與聊天；營業偏晚，若隔天有行程可依體力決定是否前往。",address:"950 臺東縣臺東市和平街118號",hours:"公開資料約20:00–02:00",phone:"—",img:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=80"}
-]}
+{t:"18:30–19:30",name:"鐵花村音樂聚落・慢市集",type:"spot",desc:"台東代表性的音樂與在地創作聚落。慢市集以台東在地手作、小農、農特產品與文創工作者為主，除了買東西，也能和創作者交流。官方目前公布慢市集週五至週日18:00–22:00；10/10/2026 是星期六，可安排在晚餐前後逛。慢市集免門票。",addr:"950 臺東市新生路135巷26號",choices:[
+{name:"鐵花村慢市集",detail:"官方定位為在地連結平台，集結手作達人、小農與文創工作者，也有手作市集、農夫市集、二手市集、手作教室與在地音樂活動。週六目前官方時段為18:00–22:00；若遇活動檔期，依現場公告。",address:"950 臺東市新生路135巷26號",hours:"目前官方公布：週五至週日18:00–22:00",phone:"089-343-393",available:"10/10（六）可安排"},
+]},
+{t:"19:30–20:15",name:"台東波浪屋｜鐵花新聚落",type:"spot",desc:"波浪屋是鐵花新聚落的一部分，以貨櫃型商店與徒步街區形成台東市區的文創散步路線。適合在慢市集後逛文創、伴手禮與生活選物。台東縣政府資料指出鐵花新聚落範圍包含波浪屋貨櫃商店、鐵道藝術村、微光集、閃閃Park等。",addr:"950 臺東市鐵花路369號",choices:[
+{name:"TTSTYLE 原創館－台東波浪屋",detail:"鐵花新聚落中的貨櫃型文創商店聚落，可逛台東在地設計、伴手禮與生活選物；台東觀光資料列每日10:00–22:00。",address:"950 臺東市鐵花路369號",hours:"每日10:00–22:00",phone:"089-332-334",available:"晚上可逛"},
+]},
+{t:"20:15–",name:"Bar Cynic 吧蟲",type:"food",desc:"如果逛完鐵花村與波浪屋仍有體力，再把最後一站留給市區夜間酒吧；若隔天要趕車，可直接跳過。",addr:"950 臺東縣臺東市和平街118號",choices:[
+{name:"Bar Cynic 吧蟲",detail:"台東市區夜間酒吧，適合把最後一段安排成飲品與聊天；營業偏晚。",address:"950 臺東縣臺東市和平街118號",hours:"公開資料約20:00–02:00",phone:"—",img:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=80"}
 ]},
 {id:"d3",date:"10/11",title:"縱谷光影與悠閒收尾",theme:"池上 → 台東市區 → 18:00 火車",items:[
 {t:"09:00–10:00",name:"北上驅車",type:"drive",desc:"退房後沿台9線往池上，車程依交通狀況約一小時上下；建議出發前加滿油並確認行李已整理。",addr:"台9線｜台東 → 鹿野／關山／池上方向"},
-{t:"10:00–10:45",name:"大池豆皮店",type:"food",desc:"池上知名手工豆皮店，傳統做法從早上現磨、現撈、現摺、現煎，主打豆皮、豆包、豆花與豆漿；熱門時段可能提早售完。",addr:"958 臺東縣池上鄉大埔路39-2號",img:"https://springhappylife.tw/wp-content/uploads/2022/07/2022072102.jpg"},
+{t:"10:00–10:45",name:"大池豆皮店",type:"food",desc:"池上知名手工豆皮店，傳統做法從早上現磨、現撈、現摺、現煎，主打豆皮、豆包、豆花與豆漿；熱門時段可能提早售完。",addr:"958 臺東縣池上鄉大埔路39-2號",img:"https://lh3.googleusercontent.com/mXDLNVlJJB4-Aptf2eq5Y3U1UrXW_AE0kMruMZzyOgcf4nMN14Tewq5aAVTZWGDrU7mIGtqm6BHbnjw-hSYYaCPu0vVkeuMDUZPIXlKha_d7%3Ds600"},
 {t:"10:45–12:00",name:"池上稻田瞭望台、天堂路",type:"spot",desc:"安排池上田野景觀拍攝。稻田瞭望台適合看整片縱谷與田野，天堂路則適合以道路延伸線拍攝稻田與山景；依當季稻作顏色調整期待。",addr:"臺東縣池上鄉稻田區／天堂路一帶"},
 {t:"12:00–12:30",name:"博文臭豆腐",type:"food",desc:"池上在地小吃，主打現點現炸臭豆腐，菜色相對單純，適合作為午餐前的短停小吃；公開資料提到有葷、素兩種選擇。",addr:"958 臺東縣池上鄉新開園58號",img:"https://cdn.walkerland.com.tw/images/upload/poi/p150741/m51815/6e1544fc3e76205b61da52dde6314d6894039b0a.jpg"},
 {t:"12:30–13:45",name:"午餐｜三選一",type:"food",desc:"依路線與當天胃口選擇牛肉麵。初鹿神奇牛肉麵在初鹿；加籐一代小食鍋偏小火鍋／麵食；東鼎牛肉麵則在台東市區，適合回程後用餐。",addr:"卑南／台東市區",choices:[
-{name:"初鹿神奇牛肉麵",detail:"初鹿在地牛肉麵店，可選紅燒或清燉湯頭，也有麵飯、水餃、酸辣湯與滷味；適合回程途中補充正餐。",address:"954 臺東縣卑南鄉忠孝路224號",hours:"公開地圖資料：10:30–14:30為主要供餐時段",phone:"089-570-278",img:"https://dungding.com.tw/wp-content/uploads/2022/09/%E8%87%AA%E5%AE%B6%E8%A3%BD%E9%BA%B5%E8%B5%B7%E5%AE%B6%EF%BC%8C%E5%85%85%E6%BB%BF%E5%9A%BC%E5%8B%81%E5%8F%88%E5%A4%A0%E5%91%B3%E7%9A%84%E5%8F%B0%E6%9D%B1%E4%BA%BA%E6%B0%A3%E7%89%9B%E8%82%89%E9%BA%B514.jpeg"},
-{name:"加籐一代小食鍋",detail:"小食鍋與麵食類型的在地餐飲選項；若當天想吃熱食又不想花太久時間，可依現場菜單選擇牛肉麵或鍋物。",address:"臺東市區，請依店家最新地圖導航",hours:"依店家當日公告",phone:"—",img:"https://dungding.com.tw/wp-content/uploads/2022/09/%E8%87%AA%E5%AE%B6%E8%A3%BD%E9%BA%B5%E8%B5%B7%E5%AE%B6%EF%BC%8C%E5%85%85%E6%BB%BF%E5%9A%BC%E5%8B%81%E5%8F%88%E5%A4%A0%E5%91%B3%E7%9A%84%E5%8F%B0%E6%9D%B1%E4%BA%BA%E6%B0%A3%E7%89%9B%E8%82%89%E9%BA%B514.jpeg"},
-{name:"東鼎牛肉麵館",detail:"台東市區牛肉麵館，以自家製麵起家；招牌有紅燒牛肉麵、三寶牛肉拉麵、牛小排麵與綜合餃，麵條Q彈、湯頭濃郁。官方菜單另列牛筋、牛肚、豆干、海帶等滷味小菜。",address:"950 臺東縣臺東市光明路107號",hours:"11:00–14:30／17:00–20:30，週二店休",phone:"089-350-321",img:"https://dungding.com.tw/wp-content/uploads/2022/09/%E8%87%AA%E5%AE%B6%E8%A3%BD%E9%BA%B5%E8%B5%B7%E5%AE%B6%EF%BC%8C%E5%85%85%E6%BB%BF%E5%9A%BC%E5%8B%81%E5%8F%88%E5%A4%A0%E5%91%B3%E7%9A%84%E5%8F%B0%E6%9D%B1%E4%BA%BA%E6%B0%A3%E7%89%9B%E8%82%89%E9%BA%B514.jpeg"}
+{name:"初鹿神奇牛肉麵",detail:"初鹿在地牛肉麵店，可選紅燒或清燉湯頭，也有麵飯、水餃、酸辣湯與滷味；適合回程途中補充正餐。",address:"954 臺東縣卑南鄉忠孝路224號",hours:"公開地圖資料：10:30–14:30為主要供餐時段",phone:"089-570-278",img:"https://images.openai.com/static-rsc-1/jy_3sfz0CLlb1Ur6wn8BGul2LC3NAbJsf3bxe08ssSLLtTXwaARXO1HviZvq6a3wuQEcfQ-B7MdDlTdqjen3Opovc4ptwgoIS0otdeCbYtFqocUJVj1vgDc8kQw9iDy4Ru42OHXg1-BXubUNQxVMO0Bm9XZCUx1bjUNL1xh3-k0"},
+{name:"加籐一代小食鍋",detail:"以手工日曬麵為主，招牌牛肉麵包含蔗香牛腱湯麵、蔗香牛肋湯麵與三寶湯麵；三寶麵可吃到叉燒、牛腱與牛肋三種肉。公開菜單也列雙牛乾拌麵、蔗香叉燒湯麵與麻辣牛肋乾麵。",address:"950 臺東縣臺東市開封街365號",hours:"公開資料：週二至週日11:00–14:00、17:00–20:30；週一休",phone:"089-330-335",img:"https://fooday.app/zh-TW/spots/9Ez7ToyBn79UtPGHyTxdfZ"},
+{name:"東鼎牛肉麵館",detail:"台東市區牛肉麵館，以自家製麵起家；招牌有紅燒牛肉麵、三寶牛肉拉麵、牛小排麵與綜合餃，麵條Q彈、湯頭濃郁。",address:"950 臺東縣臺東市光明路107號",hours:"11:00–14:30／17:00–20:30，週二店休",phone:"089-350-321",img:"https://dungding.com.tw/wp-content/uploads/2022/09/%E8%87%AA%E5%AE%B6%E8%A3%BD%E9%BA%B5%E8%B5%B7%E5%AE%B6%EF%BC%8C%E5%85%85%E6%BB%BF%E5%9A%BC%E5%8B%81%E5%8F%88%E5%A4%A0%E5%91%B3%E7%9A%84%E5%8F%B0%E6%9D%B1%E4%BA%BA%E6%B0%A3%E7%89%9B%E8%82%89%E9%BA%B514.jpeg"}
 ]},
 {t:"13:45–14:15",name:"村長的家",type:"food",desc:"鐵花村附近的可頌甜點店，安排在下午開門後採買；公開資料可見芒果可頌、北海道十勝霜淇淋可頌、花邊可頌等品項，適合買上車或帶回家。",addr:"950 臺東市鐵花路350號",img:"https://supertaste-images.tvbs.com.tw/?q=75&url=https%3A%2F%2Fcc.tvbs.com.tw%2Fimg%2Fprogram%2Fupload%2F2025%2F07%2F25%2F20250725163412-e881d8db.jpg&w=1440"},
 {t:"14:15–14:45",name:"太陽農場",type:"shop",desc:"台東市區伴手禮採買點，安排在火車前集中整理。可把水果乾、地方伴手禮與需要托運／手提的物品一次買齊。",addr:"950 臺東市安慶街46號"},
