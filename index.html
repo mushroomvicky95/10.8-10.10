@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f4ef">
+<title>台東海線・南迴｜旅遊行程 App</title>
+<style>
+:root{--bg:#f7f4ef;--card:#fff;--ink:#24231f;--muted:#7b786f;--line:#e9e3d9;--accent:#bd6f4c;--accent2:#5f8075;--soft:#f1ebe3;--shadow:0 10px 30px rgba(53,44,34,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.6;padding-bottom:86px}
+button{font:inherit;border:0;background:none;color:inherit}.app{max-width:760px;margin:auto}.hero{padding:24px 18px 18px;background:linear-gradient(145deg,#efe6da,#f7f4ef 65%)}.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--accent);font-weight:800}.hero h1{font-size:30px;line-height:1.2;margin:7px 0}.hero p{margin:7px 0;color:var(--muted);font-size:14px}.notice{margin:12px 18px;padding:12px 14px;border:1px solid #ead5c7;background:#fff8f3;border-radius:14px;font-size:12px;color:#76594a}
+.days{display:flex;gap:9px;padding:10px 18px 6px;overflow:auto}.day{min-width:96px;padding:11px 13px;border-radius:15px;background:#fff;border:1px solid var(--line);text-align:left;box-shadow:0 3px 12px rgba(0,0,0,.03);cursor:pointer}.day b{display:block;font-size:15px}.day span{font-size:11px;color:var(--muted)}.day.active{background:var(--ink);color:#fff;border-color:var(--ink)}.day.active span{color:#ddd}
+main{padding:10px 18px}.section-title{display:flex;justify-content:space-between;align-items:end;margin:16px 0 9px}.section-title h2{margin:0;font-size:20px}.section-title small{color:var(--muted)}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{background:var(--card);padding:14px;border-radius:17px;box-shadow:var(--shadow);border:1px solid var(--line)}.stat strong{font-size:20px}.stat small{display:block;color:var(--muted);font-size:11px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;margin:10px 0;overflow:hidden;box-shadow:var(--shadow)}.photo{width:100%;height:190px;object-fit:cover;display:block;background:#ddd}.content{padding:15px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;background:var(--soft);font-size:11px;color:#6d594d;margin-bottom:7px}.time{font-size:13px;color:var(--accent);font-weight:800}.title{font-size:18px;font-weight:850;margin:2px 0 5px}.desc{font-size:13px;color:#5d5a54;margin:5px 0 10px}.addr{font-size:12px;color:var(--muted);padding-top:8px;border-top:1px solid var(--line)}.actions{display:flex;gap:8px;margin-top:11px}.action{flex:1;text-align:center;padding:9px 8px;border-radius:12px;background:#f4f0ea;font-size:12px;font-weight:700;text-decoration:none}.action.primary{background:var(--ink);color:#fff}
+.timeline{position:relative;padding-left:18px}.timeline:before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:#ded7cc}.item{position:relative;margin:0 0 18px}.dot{position:absolute;left:-18px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}.flex{background:linear-gradient(135deg,#eef4f1,#fff);border:1px dashed #b9ccc5;padding:14px;border-radius:18px}.flex h3{margin:0 0 5px;font-size:16px}.choice{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid #dce6e2}.choice:first-of-type{border-top:0}.choice input{margin-top:5px;accent-color:var(--accent2)}.choice b{font-size:14px}.choice p{margin:1px 0 0;font-size:12px;color:var(--muted)}
+.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.food-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}.food-card img{width:100%;height:125px;object-fit:cover}.food-card .fc{padding:10px}.food-card h3{font-size:14px;margin:0 0 3px}.food-card p{font-size:11px;color:var(--muted);margin:0}.source{font-size:10px;color:#999;margin-top:7px}
+.bottom{position:fixed;z-index:20;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:8px max(10px,calc((100% - 760px)/2 + 10px)) calc(8px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,1fr)}.nav{font-size:10px;color:#888;text-align:center;padding:6px;cursor:pointer}.nav .ico{font-size:20px;display:block;line-height:1.1}.nav.active{color:var(--ink);font-weight:800}.page{display:none}.page.active{display:block}
+@media(min-width:700px){.photo{height:240px}.food-card img{height:160px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="hero"><div class="eyebrow">TAITUNG ROAD TRIP · MOBILE ITINERARY</div><h1>台東海線・南迴<br>三日旅遊 App</h1><p>行程總覽 × 逐日時間軸 × 彈性備案 × 餐廳實拍</p></header>
+<div class="notice">⚠️ 資料檔日期標示為 <b>10/9–10/11</b>（檔名為 10.8-10.10）。本 App 依檔案原文製作，沒有自行平移日期。</div>
+<div class="days" id="days"></div>
+<main>
+<section id="overview" class="page active"><div class="section-title"><h2>行程總覽</h2><small>點日期看完整時間軸</small></div><div class="summary"><div class="stat"><strong>3</strong><small>天行程</small></div><div class="stat"><strong>17+</strong><small>主要節點</small></div><div class="stat"><strong>彈性</strong><small>餐廳／咖啡可替換</small></div></div><div id="overviewCards"></div></section>
+<section id="timeline" class="page"><div class="section-title"><h2 id="timelineTitle">逐日時間軸</h2><small id="timelineSub"></small></div><div class="timeline" id="timelineList"></div></section>
+<section id="flex" class="page"><div class="section-title"><h2>彈性模式</h2><small>不想趕行程就從這裡調整</small></div><div class="flex"><h3>🧭 今日自由度</h3><p class="desc">原檔已標示「請擇一」「視時間」「如果還飽就不用去」的節點，保留成可勾選選項。</p><label class="choice"><input type="checkbox" checked><span><b>餐廳二選一／三選一</b><p>午餐、咖啡、晚餐、飲品依胃口與營業狀況切換。</p></span></label><label class="choice"><input type="checkbox" checked><span><b>黃金時刻只挑 2–3 個點</b><p>半月灣、都蘭觀海平台、加母子灣、杉原灣不必全部跑完。</p></span></label><label class="choice"><input type="checkbox" checked><span><b>南迴「吃飽可跳過」</b><p>原檔註明海癒小村若還飽可以不去，直接進下一段。</p></span></label><label class="choice"><input type="checkbox" checked><span><b>晚上回市區再決定</b><p>鐵花村、波浪屋、吧蟲放在回程後，依時間與體力選擇。</p></span></label></div><div class="section-title"><h2>備用口袋名單</h2></div><div id="backup"></div></section>
+<section id="food" class="page"><div class="section-title"><h2>餐廳 & 餐點</h2><small>實拍圖＋地址</small></div><div class="food-grid" id="foodGrid"></div><p class="source">照片使用公開網頁上的店家／食記實拍圖片；地址以公開店家資料或官方觀光資料交叉整理。實際營業狀況請出發前再確認。</p></section>
+</main></div>
+<nav class="bottom"><button class="nav active" data-page="overview"><span class="ico">🗺️</span>總覽</button><button class="nav" data-page="timeline"><span class="ico">🕘</span>時間軸</button><button class="nav" data-page="flex"><span class="ico">✨</span>彈性</button><button class="nav" data-page="food"><span class="ico">🍜</span>美食</button></nav>
+<script>
+const img={
+wow:"https://nash.tw/wp-content/uploads/20210325011032_2-scaled.jpg",
+dirty:"https://assets.poponote.app/note/637b373c4be8020ce0856957/media/637b373c4be802413f85695a",
+seafood:"https://pic.pimg.tw/irisiva/1692259851-2863262197-g.jpg",
+bbq:"https://ytimg.yam.com/img/ARTICLE/1200x630/2024081421005032.jpg",
+sashimi:"https://pimg.1px.tw/wu840531wu890515/1675683814-1256165128-g.jpg",
+daluan:"https://cdnsdti.data-service.cloud/site/6b43d3e5-6b3b-4788-8bc9-bc7e8909c24e/admin/Content/upload/image/20240904/8fa17796-850b-4586-afc1-8254e6fd4bf2.jpg",
+oddo:"https://disk.sharelife.tw/gallery/63234-133065/0a68240222294915.jpg",
+sophie:"https://resize-image.vocus.cc/resize?norotation=true&quality=80&sign=PP2W0Vi8eIxuwdFaEUmYh0O2ErxzhaZlD2NTEfITj90&url=https%3A%2F%2Fimages.vocus.cc%2F4165ded1-ca79-415f-8975-af17d743d69d.jpg&width=740"
+};
+const maps=n=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(n);
+const days=[
+{id:"d1",date:"10/9",title:"台東・都蘭一日遊",theme:"海線、咖啡、海灣黃金時刻",items:[
+{t:"11:30–13:00",name:"午餐｜請擇一",type:"food",desc:"哇哇哇大骨麵／飽食東日 DiginTaitung。原檔設定為午餐二選一。",addr:"哇哇哇：臺東縣東河鄉都蘭村都蘭346-3號2樓；飽食東日：臺東縣東河鄉都蘭145-21號",img:img.wow,opts:["哇哇哇大骨麵｜大骨麵、豬肉麵、滷味","飽食東日｜每週限定創意義大利麵"]},
+{t:"13:30–15:00",name:"午後咖啡廳｜請擇一",type:"cafe",desc:"海廢咖啡工作室或髒孩子｜海邊肉桂捲．咖啡。",addr:"海廢：959臺東縣東河鄉181號；髒孩子：臺東縣東河鄉隆昌村隆昌路5鄰54號",img:img.dirty,opts:["海廢咖啡工作室｜咖啡、甜點","髒孩子｜經典肉桂捲、海鹽奶蓋可可捲、拿鐵"]},
+{t:"15:00–16:30",name:"在地選物＋金樽沙灘",type:"spot",desc:"順路採買胖茶台東都蘭店、出力釀都蘭酒造，再前往金樽沙灘拍海灣弧線。",addr:"出力釀登記地址：臺東縣東河鄉都蘭村都蘭路308號；金樽沙灘：臺東縣東河鄉都蘭村金樽海岸",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"},
+{t:"16:30–18:00",name:"海岸黃金時刻｜挑 2–3 個",type:"flex",desc:"半月灣／都蘭觀海平台／加母子灣涼亭／杉原灣沙灘。原檔明確建議依時間挑 2–3 個。",addr:"都蘭觀海平台：959臺東縣東河鄉都蘭村；加母子灣：959臺東縣東河鄉東河村都蘭灣北段；杉原灣：臺東縣卑南鄉杉原灣沙灘",img:"https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80"},
+{t:"18:30",name:"晚餐｜請擇一",type:"food",desc:"海人上菜／都蘭院子大BBQ／蘇菲的小酒館／打鹿岸原住民人文主題餐廳。原檔部分餐廳註明需預約。",addr:"海人上菜：臺東縣東河鄉都蘭445-5號之1；都蘭院子：臺東縣東河鄉台11線145.3K新東糖廠文化園區；蘇菲：臺東縣東河鄉都蘭村新社路46鄰33之1號；打鹿岸：臺東市吉林路二段590號",img:img.seafood,opts:["海人上菜｜海鮮創意料理，建議預約","都蘭院子大BBQ｜麻油麵線、松阪豬、蒜香奶油蝦等","蘇菲的小酒館｜需預約","打鹿岸｜原民風味料理"]}
+]},
+{id:"d2",date:"10/10",title:"南迴海岸線一日遊",theme:"市區早午餐 → 太麻里 → 金崙",items:[
+{t:"10:00–12:30",name:"台東市區｜三選一",type:"food",desc:"榕樹下米苔目、葉氏海鮮、山木 SunMoon。原檔設定為早晨醒腦與在地飽足。",addr:"榕樹下：臺東市中華路一段362號；葉氏：臺東市強國街211號；山木 SunMoon：臺東市區（出發前依店家地圖確認）",img:img.sashimi,opts:["榕樹下米苔目｜湯／乾米苔目、滷味","葉氏海鮮｜旗魚、鮭魚、鮪魚生魚片","山木 SunMoon｜晨間咖啡"]},
+{t:"13:30–14:00",name:"路途甜點｜火車頭釋迦",type:"food",desc:"外帶釋迦冰棒或新鮮水果，讓南迴車程多一個台東味。",addr:"臺東市中華路四段638-1號",img:"https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=1200&q=80"},
+{t:"14:30–16:30",name:"太麻里｜咖啡＋海景＋廟宇",type:"spot",desc:"海癒小村咖啡店；如果還飽可跳過。再看千禧曙光紀念園區與太麻里福興宮。",addr:"海癒小村：臺東縣太麻里鄉華源村大坑路4號；千禧曙光：963臺東縣太麻里鄉火車站前曙光大道跨越台9線的海邊；福興宮：臺東縣太麻里鄉泰和村南里街32號",img:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=80"},
+{t:"16:30–18:30",name:"金崙｜海灘＋市區小吃",type:"flex",desc:"先拍金崙海灘，再依胃口分食鳩谷蔥油餅、阮家手工臭豆腐、傻師傅湯包金崙店。",addr:"金崙海灘：臺東縣太麻里鄉金崙村海岸一帶；小吃請依店家最新地圖導航",img:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80"},
+{t:"晚間",name:"回台東市區｜慢市集／波浪屋／吧蟲",type:"flex",desc:"鐵花村音樂聚落慢市集、台東波浪屋；晚餐未定，原檔備註看看有沒有時間去吧蟲。",addr:"鐵花村：台東市鐵花路一帶；吧蟲 Bar Cynic：臺東市和平街118號",img:"https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80"}
+]},
+{id:"d3",date:"10/11",title:"縱谷光影與悠閒收尾",theme:"池上 → 台東市區 → 18:00 火車",items:[
+{t:"09:00–10:00",name:"北上驅車",type:"drive",desc:"退房後沿台9線直奔池上，原檔估約 1 小時。",addr:"台9線｜台東 → 池上方向"},
+{t:"10:00–10:45",name:"大池豆皮店",type:"food",desc:"品嚐現出爐香煎豆包與豆花，捕捉手工製作畫面。",addr:"臺東縣池上鄉一帶；出發前依店家地圖確認實際門牌"},
+{t:"10:45–12:00",name:"池上稻田瞭望台、天堂路",type:"spot",desc:"利用早晨光線拍攝轉黃稻浪，保留天空與稻田細節。",addr:"臺東縣池上鄉稻田區／天堂路一帶"},
+{t:"12:00–12:30",name:"博文臭豆腐",type:"food",desc:"外酥內嫩，作為接續午餐前的開胃小食。",addr:"臺東縣池上鄉市區；出發前依店家地圖確認實際門牌"},
+{t:"12:30–13:45",name:"午餐｜三選一",type:"food",desc:"初鹿神奇牛肉麵／加籐一代小食鍋的牛肉麵／東鼎牛肉麵館。",addr:"東鼎牛肉麵館：臺東市光明路107號；其餘兩家請依店家最新地圖導航",img:img.wow,opts:["初鹿神奇牛肉麵","加籐一代小食鍋的牛肉麵","東鼎牛肉麵館｜臺東市光明路107號"]},
+{t:"13:45–14:15",name:"村長的家",type:"food",desc:"抓 14:00 開門時間，原檔目的為買人氣可頌帶上火車。",addr:"臺東市鐵花路350號",img:"https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1200&q=80"},
+{t:"14:15–14:45",name:"太陽農場",type:"shop",desc:"把特色伴手禮買齊並整理裝箱。",addr:"太陽農場直營門市：950臺東縣臺東市安慶街46號"},
+{t:"14:45–16:30",name:"午後飲品與放鬆｜三選一",type:"flex",desc:"怪豆咖啡 ODDO COFFEE／隱山茶道總店／宜昌冰店。",addr:"怪豆：臺東市更生路504號；隱山：臺東市正氣路148號；宜昌冰店：臺東市傳廣路246號",img:img.oddo,opts:["怪豆咖啡 ODDO COFFEE｜精品咖啡","隱山茶道總店｜台東茶飲","宜昌冰店｜水果汁、冰沙、紅茶"]},
+{t:"16:30–17:00",name:"前往台東車站",type:"drive",desc:"還車、提領行李，預留進站時間，原檔設定 18:00 火車。",addr:"臺東火車站：臺東市岩灣路101巷598號"}
+]}];
+const backup=[
+["雞餓攤車","民宿周邊宵夜｜炸物小點，帶回房間","臺東民宿周邊"],["阿山哥臭豆腐","民宿周邊｜不想跑遠時的替換","臺東民宿周邊"],["阿鋐炸雞","市區在地小吃｜台式炸雞","臺東市正氣路一帶"],["寶桑小吃（寶桑蚵嗲）","市區炸物｜適合車上外帶","臺東市寶桑路／寶桑一帶"],["天山茶莊 阿原滷味","冷滷味｜適合外帶當下酒菜","臺東市區"],["昱禎臭豆腐","市區宵夜｜原檔列為收尾選項","臺東市區"],["HATT 海特興市－海特咖啡 復興店","山木客滿時的咖啡備案","臺東市復興路一帶"],["哩厚冰果室","復古冰店｜天氣熱時切換","臺東市區"],["台東美濃冰品 MinoIce（車站門市）","接近車站時快速外帶","臺東火車站周邊"]];
+let selectedDay=days[0];
+const daysEl=document.querySelector("#days");
+days.forEach((d,i)=>{const b=document.createElement("button");b.className="day"+(i===0?" active":"");b.innerHTML="<b>Day "+(i+1)+" · "+d.date+"</b><span>"+d.title+"</span>";b.onclick=()=>{selectedDay=d;document.querySelectorAll(".day").forEach(x=>x.classList.remove("active"));b.classList.add("active");showPage("timeline");renderTimeline()};daysEl.appendChild(b)});
+function card(x){let imgTag=x.img?'<img class="photo" src="'+x.img+'" alt="'+x.name+'" loading="lazy">':"";let kind=x.type==="food"?"🍜 美食":x.type==="cafe"?"☕ 咖啡":x.type==="flex"?"✨ 彈性":x.type==="spot"?"🌊 景點":x.type==="drive"?"🚗 車程":"🛍️ 採買";let opts=(x.opts||[]).join("\n")||"此節點無替換選項";return '<article class="card">'+imgTag+'<div class="content"><span class="tag">'+kind+'</span><div class="time">'+x.t+'</div><div class="title">'+x.name+'</div><div class="desc">'+x.desc+'</div><div class="addr">📍 '+x.addr+'</div><div class="actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x.addr)+'">Google 導航</a><button class="action" onclick="alert('+JSON.stringify(opts)+')">看選項</button></div></div></article>'}
+function renderOverview(){document.querySelector("#overviewCards").innerHTML=days.map((d,i)=>'<div class="card"><div class="content"><span class="tag">DAY '+(i+1)+' · '+d.date+'</span><div class="title">'+d.title+'</div><div class="desc">'+d.theme+'</div><div class="addr">⏱ '+d.items.length+' 個時間節點 · 🚗 自駕</div><div class="actions"><button class="action primary" onclick="selectedDay=days['+i+'];document.querySelectorAll(\\'.day\\').forEach((x,j)=>x.classList.toggle(\\'active\\',j==='+i+'));showPage(\\'timeline\\');renderTimeline()">查看時間軸</button></div></div></div>').join("")}
+function renderTimeline(){document.querySelector("#timelineTitle").textContent=selectedDay.date+"｜"+selectedDay.title;document.querySelector("#timelineSub").textContent=selectedDay.theme;document.querySelector("#timelineList").innerHTML=selectedDay.items.map(x=>'<div class="item"><span class="dot"></span>'+card(x)+'</div>').join("")}
+function renderFood(){const foods=[];days.forEach(d=>d.items.forEach(x=>{if(x.type==="food"||x.type==="cafe")foods.push(x)}));document.querySelector("#foodGrid").innerHTML=foods.map(x=>'<article class="food-card"><img src="'+(x.img||img.seafood)+'" alt="'+x.name+'" loading="lazy"><div class="fc"><h3>'+x.name+'</h3><p>'+x.addr+'</p><p class="source">公開網頁實拍圖；時間軸內有完整餐點選項</p></div></article>').join("")}
+function renderBackup(){document.querySelector("#backup").innerHTML=backup.map(x=>'<div class="card"><div class="content"><span class="tag">備案</span><div class="title">'+x[0]+'</div><div class="desc">'+x[1]+'</div><div class="addr">📍 '+x[2]+'</div><div class="actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x[0]+" "+x[2])+'">導航</a></div></div></div>').join("")}
+function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));document.querySelectorAll(".nav").forEach(n=>n.classList.toggle("active",n.dataset.page===id));window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll(".nav").forEach(n=>n.onclick=()=>{showPage(n.dataset.page);if(n.dataset.page==="timeline")renderTimeline()});
+renderOverview();renderTimeline();renderFood();renderBackup();
+</script></body></html>
