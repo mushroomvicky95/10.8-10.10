@@ -14,7 +14,7 @@ main{padding:10px 18px}.section-title{display:flex;justify-content:space-between
 .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{background:var(--card);padding:14px;border-radius:17px;box-shadow:var(--shadow);border:1px solid var(--line)}.stat strong{font-size:20px}.stat small{display:block;color:var(--muted);font-size:11px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;margin:10px 0;overflow:hidden;box-shadow:var(--shadow)}.photo{width:100%;height:190px;object-fit:cover;display:block;background:#ddd}.content{padding:15px}.tag{display:inline-flex;padding:4px 8px;border-radius:999px;background:var(--soft);font-size:11px;color:#6d594d;margin-bottom:7px}.time{font-size:13px;color:var(--accent);font-weight:800}.title{font-size:18px;font-weight:850;margin:2px 0 5px}.desc{font-size:13px;color:#5d5a54;margin:5px 0 10px}.addr{font-size:12px;color:var(--muted);padding-top:8px;border-top:1px solid var(--line)}.actions{display:flex;gap:8px;margin-top:11px}.action{flex:1;text-align:center;padding:9px 8px;border-radius:12px;background:#f4f0ea;font-size:12px;font-weight:700;text-decoration:none}.action.primary{background:var(--ink);color:#fff}
 .timeline{position:relative;padding-left:18px}.timeline:before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:#ded7cc}.item{position:relative;margin:0 0 18px}.dot{position:absolute;left:-18px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}.flex{background:linear-gradient(135deg,#eef4f1,#fff);border:1px dashed #b9ccc5;padding:14px;border-radius:18px}.flex h3{margin:0 0 5px;font-size:16px}.choice{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid #dce6e2}.choice:first-of-type{border-top:0}.choice input{margin-top:5px;accent-color:var(--accent2)}.choice b{font-size:14px}.choice p{margin:1px 0 0;font-size:12px;color:var(--muted)}
-.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.food-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}.food-card img{width:100%;height:125px;object-fit:cover}.food-card .fc{padding:10px}.food-card h3{font-size:14px;margin:0 0 3px}.food-card p{font-size:11px;color:var(--muted);margin:0}.source{font-size:10px;color:#999;margin-top:7px}
+.choice-list{display:grid;gap:10px;margin-top:12px}.restaurant-choice{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fbfaf7}.restaurant-choice h4{margin:0 0 4px;font-size:15px}.restaurant-choice .meta{font-size:11px;color:var(--muted);margin:3px 0}.restaurant-choice .dish{font-size:12px;color:#5d5a54;margin:6px 0}.restaurant-choice .choice-actions{display:flex;gap:7px;margin-top:8px}.restaurant-choice .choice-actions a{flex:1}.status-closed{display:inline-block;font-size:10px;padding:3px 7px;border-radius:999px;background:#f7e8e3;color:#9a5945;margin-left:5px}.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.food-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}.food-card img{width:100%;height:125px;object-fit:cover}.food-card .fc{padding:10px}.food-card h3{font-size:14px;margin:0 0 3px}.food-card p{font-size:11px;color:var(--muted);margin:0}.source{font-size:10px;color:#999;margin-top:7px}
 .bottom{position:fixed;z-index:20;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:8px max(10px,calc((100% - 760px)/2 + 10px)) calc(8px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,1fr)}.nav{font-size:10px;color:#888;text-align:center;padding:6px;cursor:pointer}.nav .ico{font-size:20px;display:block;line-height:1.1}.nav.active{color:var(--ink);font-weight:800}.page{display:none}.page.active{display:block}
 @media(min-width:700px){.photo{height:240px}.food-card img{height:160px}}
 </style>
@@ -50,7 +50,10 @@ const days=[
 ]},
 
 {id:"d1",date:"10/9",title:"台東・都蘭一日遊",theme:"海線、咖啡、海灣黃金時刻",items:[
-{t:"11:30–13:00",name:"午餐｜請擇一",type:"food",desc:"哇哇哇大骨麵／飽食東日 DiginTaitung。原檔設定為午餐二選一。",addr:"哇哇哇：臺東縣東河鄉都蘭村都蘭346-3號2樓；飽食東日：臺東縣東河鄉都蘭145-21號",img:img.wow,opts:["哇哇哇大骨麵｜大骨麵、豬肉麵、滷味","飽食東日｜每週限定創意義大利麵"]},
+{t:"11:30–13:00",name:"午餐｜二選一",type:"food",desc:"兩間餐廳完整列出，直接比較後選擇。10/9 為星期五；目前公開資料顯示飽食東日主要於週末營業，當天是否開店請以店家最新公告為準。",addr:"台東縣東河鄉都蘭地區",choices:[
+{name:"哇哇哇大骨麵",detail:"招牌大骨麵；另有豬肉麵、炸醬麵、湯麵、大骨湯、滷味。",address:"959 臺東縣東河鄉都蘭346-3號二樓",hours:"公開資料：11:00–14:10；另有資料列晚間 17:00–19:20，出發前確認",phone:"089-531-040",img:img.wow,available:"10/9 午餐可優先查看"},
+{name:"飽食東日 DiginTaitung",detail:"義大利麵；每週限定創意義大利麵，海鮮食材為特色。",address:"959 臺東縣東河鄉145-21號",hours:"公開資料：週六 11:00–13:00、17:30–19:30；週日 11:00–13:00",phone:"0953-829-882",img:"https://images.openai.com/static-rsc-1/W5zfPp3S8EPNImsasoSaNfHTlVrI_rXkztOUdEzHq5iL7pMaurYw3cUu55u1eLb9BfP1vMmqPMH7wEuC4vl1pOGRO4yMulMCGbrwARYDmk9gDdmmE4j2RPvhQbd3PGWOYSyzUJFFbGUm_ZKxCochkL2VFVmN6Wtbo9YPzB3u9qo",available:"10/9（五）目前公開資料顯示休息"}
+]},
 {t:"13:30–15:00",name:"午後咖啡廳｜請擇一",type:"cafe",desc:"海廢咖啡工作室或髒孩子｜海邊肉桂捲．咖啡。",addr:"海廢：959臺東縣東河鄉181號；髒孩子：臺東縣東河鄉隆昌村隆昌路5鄰54號",img:img.dirty,opts:["海廢咖啡工作室｜咖啡、甜點","髒孩子｜經典肉桂捲、海鹽奶蓋可可捲、拿鐵"]},
 {t:"15:00–16:30",name:"在地選物＋金樽沙灘",type:"spot",desc:"順路採買胖茶台東都蘭店、出力釀都蘭酒造，再前往金樽沙灘拍海灣弧線。",addr:"出力釀登記地址：臺東縣東河鄉都蘭村都蘭路308號；金樽沙灘：臺東縣東河鄉都蘭村金樽海岸",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"},
 {t:"16:30–18:00",name:"海岸黃金時刻｜挑 2–3 個",type:"flex",desc:"半月灣／都蘭觀海平台／加母子灣涼亭／杉原灣沙灘。原檔明確建議依時間挑 2–3 個。",addr:"都蘭觀海平台：959臺東縣東河鄉都蘭村；加母子灣：959臺東縣東河鄉東河村都蘭灣北段；杉原灣：臺東縣卑南鄉杉原灣沙灘",img:"https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80"},
@@ -79,23 +82,12 @@ const backup=[
 let selectedDay=days[0];
 const daysEl=document.querySelector("#days");
 days.forEach((d,i)=>{const b=document.createElement("button");b.className="day"+(i===0?" active":"");b.innerHTML="<b>Day "+(i+1)+" · "+d.date+"</b><span>"+d.title+"</span>";b.onclick=()=>{selectedDay=d;document.querySelectorAll(".day").forEach(x=>x.classList.remove("active"));b.classList.add("active");showPage("timeline");renderTimeline()};daysEl.appendChild(b)});
-function card(x){let imgTag=x.img?'<img class="photo" src="'+x.img+'" alt="'+x.name+'" loading="lazy">':"";let kind=x.type==="food"?"🍜 美食":x.type==="cafe"?"☕ 咖啡":x.type==="flex"?"✨ 彈性":x.type==="spot"?"🌊 景點":x.type==="drive"?"🚗 車程":"🛍️ 採買";let opts=(x.opts||[]).join("\n")||"此節點無替換選項";return '<article class="card">'+imgTag+'<div class="content"><span class="tag">'+kind+'</span><div class="time">'+x.t+'</div><div class="title">'+x.name+'</div><div class="desc">'+x.desc+'</div><div class="addr">📍 '+x.addr+'</div><div class="actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x.addr)+'">Google 導航</a><button class="action" onclick="alert('+JSON.stringify(opts)+')">看選項</button></div></div></article>'}
-function renderOverview(){
-  document.querySelector("#overviewCards").innerHTML = days.map((d,i) =>
-    '<div class="card"><div class="content"><span class="tag">DAY '+(i+1)+' · '+d.date+
-    '</span><div class="title">'+d.title+'</div><div class="desc">'+d.theme+
-    '</div><div class="addr">⏱ '+d.items.length+' 個時間節點 · 🚗 自駕</div>'+
-    '<div class="actions"><button class="action primary overview-day-btn" data-day="'+i+'">查看時間軸</button></div></div></div>'
-  ).join("");
-  document.querySelectorAll(".overview-day-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const i = Number(btn.dataset.day);
-      selectedDay = days[i];
-      document.querySelectorAll(".day").forEach((x,j) => x.classList.toggle("active", j === i));
-      showPage("timeline");
-      renderTimeline();
-    });
-  });
+function card(x){
+  let imgTag=x.img?'<img class="photo" src="'+x.img+'" alt="'+x.name+'" loading="lazy">':"";
+  let kind=x.type==="food"?"🍜 美食":x.type==="cafe"?"☕ 咖啡":x.type==="flex"?"✨ 彈性":x.type==="spot"?"🌊 景點":x.type==="drive"?"🚗 車程":"🛍️ 採買";
+  let choices=x.choices?'<div class="choice-list">'+x.choices.map(o=>'<div class="restaurant-choice"><h4>🍽️ '+o.name+'</h4><div class="meta"><span class="status-closed">'+o.available+'</span></div><div class="dish">'+o.detail+'</div><div class="meta">📍 '+o.address+'</div><div class="meta">🕐 '+o.hours+'</div><div class="meta">☎️ '+o.phone+'</div><div class="choice-actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(o.address)+'">導航</a><a class="action" target="_blank" rel="noopener" href="'+maps(o.name+' '+o.address)+'">查看</a></div></div>').join("")+'</div>':"";
+  let opts=(x.opts||[]).join("\n")||"此節點無替換選項";
+  return '<article class="card">'+imgTag+'<div class="content"><span class="tag">'+kind+'</span><div class="time">'+x.t+'</div><div class="title">'+x.name+'</div><div class="desc">'+x.desc+'</div><div class="addr">📍 '+x.addr+'</div>'+choices+'<div class="actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x.addr)+'">Google 導航</a>'+(x.choices?"":'<button class="action" onclick="alert('+JSON.stringify(opts)+')">看選項</button>')+'</div></div></article>'
 }
 function renderTimeline(){document.querySelector("#timelineTitle").textContent=selectedDay.date+"｜"+selectedDay.title;document.querySelector("#timelineSub").textContent=selectedDay.theme;document.querySelector("#timelineList").innerHTML=selectedDay.items.map(x=>'<div class="item"><span class="dot"></span>'+card(x)+'</div>').join("")}
 function renderFood(){const foods=[];days.forEach(d=>d.items.forEach(x=>{if(x.type==="food"||x.type==="cafe")foods.push(x)}));document.querySelector("#foodGrid").innerHTML=foods.map(x=>'<article class="food-card"><img src="'+(x.img||img.seafood)+'" alt="'+x.name+'" loading="lazy"><div class="fc"><h3>'+x.name+'</h3><p>'+x.addr+'</p><p class="source">公開網頁實拍圖；時間軸內有完整餐點選項</p></div></article>').join("")}
