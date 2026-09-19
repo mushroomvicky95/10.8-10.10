@@ -207,7 +207,7 @@ const daysEl=document.querySelector("#days");
 days.forEach((d,i)=>{const b=document.createElement("button");b.className="day"+(i===0?" active":"");b.innerHTML="<b>Day "+(i+1)+" · "+d.date+"</b><span>"+d.title+"</span>";b.onclick=()=>{selectedDay=d;document.querySelectorAll(".day").forEach(x=>x.classList.remove("active"));b.classList.add("active");showPage("timeline");renderTimeline()};daysEl.appendChild(b)});
 function card(x){
   const kind=x.type==="food"?"🍜 美食":x.type==="cafe"?"☕ 咖啡":x.type==="flex"?"✨ 彈性":x.type==="spot"?"🌊 景點":x.type==="drive"?"🚗 車程":"🛍️ 採買";
-  const isRestaurant=(x.type==="food"||x.type==="cafe");
+  const isRestaurant=(x.type==="food"||x.type==="cafe"||x.type==="flex");
   const isDay4=selectedDay.date==="10/11";
   const imageUrl=(url)=>url&&/\.(jpe?g|png|webp)(\?|$)/i.test(url);
 
