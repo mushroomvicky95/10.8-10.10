@@ -192,15 +192,15 @@ const days=[
 ]}];
 
 const backup=[
-["雞餓攤車","民宿周邊宵夜｜以雞腳、鴨翅、煙燻雞腿與滷味小吃為主；以下改用該攤車公開照片，不再使用通用食物圖。","臺東縣臺東市更生北路370號","https://footinder.com.tw/%E5%8F%B0%E6%9D%B1%E7%B8%A3%E5%8F%B0%E6%9D%B1%E5%B8%82/89572/"],
-["阿山哥臭豆腐","市區／民宿周邊的臭豆腐備案；改用阿山哥臭豆腐食記中的店家餐點實拍。","臺東市區，依店家地圖導航","https://www.bigfang.tw/blog/post/asange-stinkytofu-taitung"],
+["雞餓攤車","民宿周邊宵夜｜以雞腳、鴨翅、煙燻雞腿與滷味小吃為主；以下改用該攤車公開照片，不再使用通用食物圖。","臺東縣臺東市更生北路370號","https://lh3.ggpht.com/p/AF1QipMJbCj_N7c7e8fmHvUVQhN9o52S-IUqfD-ud-SR%3Ds1024"],
+["阿山哥臭豆腐","市區／民宿周邊的臭豆腐備案；改用阿山哥臭豆腐食記中的店家餐點實拍。","臺東市區，依店家地圖導航","https://img.bigfang.tw/2022/09/1663330760-fac4ef5554f69012fe38d2f1d4e245a6.jpg"],
 ["阿鋐炸雞","台東市區台式炸雞備案，適合當宵夜或外帶。","臺東市正氣路一帶","https://megapx-assets.dcard.tw/images/6945bf84-b7e7-4718-ac9d-f481d383bfc9/1280.jpeg"],
-["寶桑小吃（寶桑蚵嗲）","寶桑一帶炸物／蚵嗲類小吃；改用寶桑蚵嗲實際餐點照片。","950 臺東縣臺東市寶桑路135號","https://www.popdaily.com.tw/forum/food/1216550"],
-["天山茶莊 阿原滷味","冷滷味備案；店家公開照片與食記均以本店滷味為主，常見雞腳、鴨翅、豆干、米血等。","950 臺東縣臺東市正氣路103號","https://fulleats.com.tw/Home/Detail/1149"],
-["昱禎臭豆腐","市區宵夜備案；改用昱禎臭豆腐實際餐點照片。","臺東市區","https://rowing2005.pixnet.net/blog/posts/9578139802"],
-["HATT 海特興市－海特咖啡 復興店","咖啡備案；改用 HATT 海特咖啡公開食記中的實際咖啡與餐點照片。","臺東市復興路一帶","https://cc2kitchen.com/hattcoffee/"],
-["哩厚冰果室","復古冰果室備案；改用哩厚冰果室哈密瓜牛奶恰恰的實際餐點照片。","950 臺東縣臺東市大同路207號","https://luckyday296.pixnet.net/blog/posts/11406596089"],
-["台東美濃冰品 MinoIce（車站門市）","離開前的快速冰品外帶選項；改用台東美濃冰品實際冰品照片。","臺東火車站周邊","https://www.popdaily.com.tw/forum/food/1526393"]
+["寶桑小吃（寶桑蚵嗲）","寶桑一帶炸物／蚵嗲類小吃；改用寶桑蚵嗲實際餐點照片。","950 臺東縣臺東市寶桑路135號","https://static.popdaily.com.tw/u/202201/1d2e7d87-faad-4787-8b1f-5364baec2e74.jpeg"],
+["天山茶莊 阿原滷味","冷滷味備案；店家公開照片與食記均以本店滷味為主，常見雞腳、鴨翅、豆干、米血等。","950 臺東縣臺東市正氣路103號","https://lh3.ggpht.com/p/AF1QipNuYGf7P6_3VOe57kqH-m1j07l5X4bJQ4dAs-fl%3Ds1024"],
+["昱禎臭豆腐","市區宵夜備案；改用昱禎臭豆腐實際餐點照片。","臺東市區","https://pimg.1px.tw/rowing2005/1763372749-2123061834-g.png"],
+["HATT 海特興市－海特咖啡 復興店","咖啡備案；改用 HATT 海特咖啡公開食記中的實際咖啡與餐點照片。","臺東市復興路一帶","https://shaper.fooday.app/width%3D1200%2Cquality%3D75%2Cformat%3Dauto/UFipooYcBmsVd8MuWcw4HN"],
+["哩厚冰果室","復古冰果室備案；改用哩厚冰果室哈密瓜牛奶恰恰的實際餐點照片。","950 臺東縣臺東市大同路207號","https://pimg.1px.tw/luckyday296/1688481783-2409506696-g.jpg"],
+["台東美濃冰品 MinoIce（車站門市）","離開前的快速冰品外帶選項；改用台東美濃冰品實際冰品照片。","臺東火車站周邊","https://image-cdn-flare.qdm.cloud/q68883061c8cb7/image/data/2025/10/27/6833805d07d9a6916fcfb6c5093e6e81.png"]
 ];
 let selectedDay=days[0];
 const daysEl=document.querySelector("#days");
@@ -267,7 +267,7 @@ function renderFlexRestaurants(){
     return;
   }
   el.innerHTML=out.map(x=>'<article class="restaurant-choice flex-restaurant">'+
-    '<img class="choice-photo" src="'+x.img+'" alt="'+x.name+' 餐點" loading="lazy" onerror="this.onerror=null;this.src=\''+img.seafood+'\';">'+
+    '<img class="choice-photo" src="'+x.img+'" alt="'+x.name+' 餐點" loading="lazy">'+
     '<div class="flex-info"><h4>🍽️ '+x.name+'</h4>'+
     '<div class="dish">'+x.detail+'</div>'+
     '<div class="meta">📍 '+x.address+'</div>'+
