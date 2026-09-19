@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="version" content="2026-09-19-day4-layout-and-food-photo-fix"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="app-version" content="all-restaurant-layout-20260919-v3">
+<meta name="version" content="2026-09-19-day4-layout-and-food-photo-fix"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="app-version" content="all-restaurants-reference-layout-20260919-v4">
 <meta name="theme-color" content="#f7f4ef">
 <title>台東海線・南迴｜旅遊行程 App</title>
 <style>
@@ -50,6 +50,18 @@ main{padding:10px 18px}.section-title{display:flex;justify-content:space-between
   .restaurant-choice .choice-media>a .choice-photo{width:104px!important;height:104px!important}
   .restaurant-choice h4{font-size:15px}
   .restaurant-group-card>.content{padding:10px}
+}
+.restaurant-group-card{display:block!important;width:100%!important;overflow:hidden!important}
+.restaurant-group-card>.content{width:100%!important;box-sizing:border-box!important;padding:12px!important}
+.restaurant-group-card .choice-list{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;width:100%!important;margin-top:10px!important}
+.restaurant-group-card .restaurant-choice{width:100%!important;box-sizing:border-box!important}
+.restaurant-group-card .choice-actions{display:flex!important;flex-direction:column!important;gap:7px!important;width:100%!important}
+.restaurant-group-card .choice-actions a{width:100%!important;box-sizing:border-box!important}
+@media(max-width:430px){
+  .restaurant-group-card>.content{padding:10px!important}
+  .restaurant-group-card .restaurant-choice{grid-template-columns:104px minmax(0,1fr)!important;column-gap:10px!important;padding:9px!important}
+  .restaurant-group-card .choice-photo,.restaurant-group-card .choice-media,.restaurant-group-card .choice-media>a{width:104px!important;height:104px!important}
+  .restaurant-group-card .choice-media>a .choice-photo{width:104px!important;height:104px!important}
 }
 </style>
 </head>
@@ -195,8 +207,8 @@ const daysEl=document.querySelector("#days");
 days.forEach((d,i)=>{const b=document.createElement("button");b.className="day"+(i===0?" active":"");b.innerHTML="<b>Day "+(i+1)+" · "+d.date+"</b><span>"+d.title+"</span>";b.onclick=()=>{selectedDay=d;document.querySelectorAll(".day").forEach(x=>x.classList.remove("active"));b.classList.add("active");showPage("timeline");renderTimeline()};daysEl.appendChild(b)});
 function card(x){
   const kind=x.type==="food"?"🍜 美食":x.type==="cafe"?"☕ 咖啡":x.type==="flex"?"✨ 彈性":x.type==="spot"?"🌊 景點":x.type==="drive"?"🚗 車程":"🛍️ 採買";
+  const isRestaurant=(x.type==="food"||x.type==="cafe");
   const isDay4=selectedDay.date==="10/11";
-  const day4Restaurant=(isDay4 && (x.type==="food"||x.type==="cafe"||x.type==="flex"));
   const imageUrl=(url)=>url&&/\.(jpe?g|png|webp)(\?|$)/i.test(url);
 
   const renderChoice=(o, fallbackPhoto="")=>{
@@ -216,30 +228,24 @@ function card(x){
       '<div class="choice-actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(o.address||o.name)+'">導航</a><a class="action" target="_blank" rel="noopener" href="'+maps(o.name+" "+(o.address||""))+'">查看</a></div></div></div>';
   };
 
-  if(day4Restaurant){
-    let inner="";
-    if(Array.isArray(x.choices) && x.choices.length){
-      inner='<div class="choice-list day4-choices">'+x.choices.map(o=>renderChoice(o,x.img)).join("")+'</div>';
-    }else{
-      inner='<div class="choice-list day4-choices">'+renderChoice({name:x.name,detail:x.desc,address:x.addr,img:x.img},x.img)+'</div>';
-    }
-    return '<article class="card day4-restaurant-card"><div class="content">'+
+  if(isRestaurant){
+    const hasChoices=Array.isArray(x.choices) && x.choices.length>0;
+    const inner=hasChoices
+      ? '<div class="choice-list '+(isDay4?"day4-choices":"")+'">'+x.choices.map(o=>renderChoice(o,x.img)).join("")+'</div>'
+      : '<div class="choice-list '+(isDay4?"day4-choices":"")+'">'+renderChoice({name:x.name,detail:x.desc,address:x.addr,hours:x.hours,phone:x.phone,img:x.img,fallbackImg:x.fallbackImg},x.img)+'</div>';
+    return '<article class="card restaurant-group-card '+(isDay4?'day4-restaurant-card':'')+'"><div class="content">'+
       '<span class="tag">'+kind+'</span><div class="time">'+x.t+'</div><div class="title">'+x.name+'</div>'+
       '<div class="desc">'+x.desc+'</div><div class="addr">📍 '+x.addr+'</div>'+
       inner+
-      '<div class="actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x.addr)+'">Google 導航</a></div>'+
       '</div></article>';
   }
 
-  const hasChoices=Array.isArray(x.choices) && x.choices.length>0;
-  let choices=hasChoices?'<div class="choice-list">'+x.choices.map(o=>renderChoice(o)).join("")+'</div>':"";
-  let imgTag=(!hasChoices && x.img)?'<img class="photo" src="'+x.img+'" alt="'+x.name+'" loading="lazy">':"";
-  let outerClass=((x.type==="food"||x.type==="cafe")&&!hasChoices)?"restaurant-main-card":"restaurant-group-card";
-  let opts=(x.opts||[]).join("\\n")||"此節點無替換選項";
-  return '<article class="card '+outerClass+'">'+imgTag+
+  const imgTag=x.img?'<img class="photo" src="'+x.img+'" alt="'+x.name+'" loading="lazy">':"";
+  const opts=(x.opts||[]).join("\\n")||"此節點無替換選項";
+  return '<article class="card">'+imgTag+
     '<div class="content"><span class="tag">'+kind+'</span><div class="time">'+x.t+'</div><div class="title">'+x.name+'</div>'+
-    '<div class="desc">'+x.desc+'</div><div class="addr">📍 '+x.addr+'</div>'+choices+
-    '<div class="actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x.addr)+'">Google 導航</a>'+(hasChoices?"":'<button class="action" onclick="alert('+JSON.stringify(opts)+')">看選項</button>')+'</div></div></article>';
+    '<div class="desc">'+x.desc+'</div><div class="addr">📍 '+x.addr+'</div>'+
+    '<div class="actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x.addr)+'">Google 導航</a><button class="action" onclick="alert('+JSON.stringify(opts)+')">看選項</button></div></div></article>';
 }
 function renderTimeline(){document.querySelector("#timelineTitle").textContent=selectedDay.date+"｜"+selectedDay.title;document.querySelector("#timelineSub").textContent=selectedDay.theme;document.querySelector("#timelineList").innerHTML=selectedDay.items.map(x=>'<div class="item"><span class="dot"></span>'+card(x)+'</div>').join("")}
 function renderFood(){const foods=[];days.forEach(d=>d.items.forEach(x=>{if(x.choices){x.choices.forEach(o=>foods.push({name:o.name,addr:o.address,img:o.img,fallbackImg:o.fallbackImg,detail:o.detail}))}else if(x.type==="food"||x.type==="cafe"){foods.push({name:x.name,addr:x.addr,img:x.img,fallbackImg:x.fallbackImg,detail:x.desc})}}));document.querySelector("#foodGrid").innerHTML=foods.map(x=>'<article class="food-card"><img src="'+(x.img||img.seafood)+'" alt="'+x.name+' 餐點" loading="lazy" onerror="this.onerror=null;this.src=(x.fallbackImg||img.seafood);"><div class="fc"><h3>'+x.name+'</h3><p>'+x.addr+'</p><p>'+x.detail+'</p><p class="source">餐點實拍／公開資料</p></div></article>').join("")}
