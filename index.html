@@ -37,8 +37,7 @@ main{padding:10px 18px}.section-title{display:flex;justify-content:space-between
 </div>
 <div class="section-title"><h2>🍽️ 彈性餐廳清單</h2><small>只顯示「沒有出現在行程頁」的餐廳備案｜左側正方形餐點照・右側詳細資料</small></div>
 <div id="flexRestaurants"></div>
-<div class="section-title"><h2>🧳 備用口袋名單</h2><small>臨時想換餐廳時可參考</small></div>
-<div id="backup"></div>
+
 </section>
 <section id="food" class="page"><div class="section-title"><h2>餐廳 & 餐點</h2><small>餐點實拍＋地址</small></div><div class="food-grid" id="foodGrid"></div><p class="source">照片使用公開網頁上的店家／食記實拍圖片；地址以公開店家資料或官方觀光資料交叉整理。實際營業狀況請出發前再確認。</p></section>
 </main></div>
@@ -206,14 +205,15 @@ function renderFlexRestaurants(){
     '<div class="choice-actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x.name+" "+x.address)+'">導航</a></div>'+
     '</div></article>').join("");
 }
-function renderBackup(){document.querySelector("#backup").innerHTML=backup.map(x=>'<div class="card restaurant-main-card">'+(x[3]?'<img class="photo" src="'+x[3]+'" alt="'+x[0]+'" loading="lazy">':'')+'<div class="content"><span class="tag">備案</span><div class="title">'+x[0]+'</div><div class="desc">'+x[1]+'</div><div class="addr">📍 '+x[2]+'</div><div class="actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x[0]+" "+x[2])+'">導航</a></div></div></div>').join("")}
 function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));document.querySelectorAll(".nav").forEach(n=>n.classList.toggle("active",n.dataset.page===id));window.scrollTo({top:0,behavior:"smooth"})}
 document.querySelectorAll(".nav").forEach(n=>n.onclick=()=>{showPage(n.dataset.page);if(n.dataset.page==="timeline")renderTimeline()});
-renderTimeline();renderFood();renderFlexRestaurants();renderBackup();
+renderTimeline();renderFood();renderFlexRestaurants();
 </script></body></html><style>.day4-choices{width:100%;box-sizing:border-box;gap:12px}.day4-choices .restaurant-choice{width:100%;box-sizing:border-box;overflow:hidden}.day4-choices .choice-photo{object-fit:cover;display:block}.day4-choices .choice-actions{flex-wrap:wrap}.day4-choices .choice-actions a{min-width:0}.restaurant-choice{box-sizing:border-box}
 .restaurant-choice{display:grid!important;grid-template-columns:120px minmax(0,1fr)!important;grid-template-rows:auto!important;column-gap:12px!important;align-items:start!important;position:relative;overflow:hidden}
 .restaurant-choice .choice-photo,.restaurant-choice .choice-media{grid-column:1!important;grid-row:1!important;width:120px!important;height:120px!important;min-width:120px!important;max-width:120px!important;aspect-ratio:1/1!important;object-fit:cover!important;border-radius:12px!important;margin:0!important;display:block!important;align-self:start!important}
 .restaurant-choice .choice-info{grid-column:2!important;grid-row:1!important;min-width:0!important;overflow-wrap:anywhere}
+.restaurant-choice .choice-media a{display:block;width:120px;height:120px;line-height:0}
+.restaurant-choice .choice-media a .choice-photo{width:120px!important;height:120px!important}@media(max-width:430px){.restaurant-choice .choice-media a{width:104px;height:104px}.restaurant-choice .choice-media a .choice-photo{width:104px!important;height:104px!important}}
 .restaurant-choice .choice-info h4{margin:0 0 4px;font-size:15px}
 .restaurant-choice .choice-info .meta{font-size:11px;color:var(--muted);margin:3px 0}
 .restaurant-choice .choice-info .dish{font-size:12px;color:#5d5a54;margin:6px 0;line-height:1.5}
