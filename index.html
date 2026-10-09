@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="version" content="2026-09-20-afternoon-drink-photo-fix-v2"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="app-version" content="compact-functional-day-tabs-20261009-v2">
+<meta name="version" content="2026-09-20-afternoon-drink-photo-fix-v2"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="app-version" content="restaurant-map-links-name-address-20261009-v1">
 <meta name="theme-color" content="#f7f4ef">
 <title>台東海線・南迴｜旅遊行程 App</title>
 <style>
@@ -109,6 +109,20 @@ oddo:"https://disk.sharelife.tw/gallery/63234-133065/0a68240222294915.jpg",
 sophie:"https://www.bring-you.info/imgs/2015/08/%E5%8F%B0%E6%9D%B1%E5%BF%85%E5%90%83%E7%BE%8E%E9%A3%9F%E8%98%87%E8%8F%B2%E7%9A%84%E5%B0%8F%E9%85%92%E9%A4%A8-4.jpg"
 };
 const maps=n=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(n);
+function fixRestaurantMapLinks(){
+  document.querySelectorAll(".restaurant-choice,.food-card,.flex-restaurant").forEach(card=>{
+    const title=card.querySelector("h4,h3,.fc h3");
+    if(!title)return;
+    const name=title.textContent.replace(/^🍽️\\s*/,"").trim();
+    const addressNode=[...card.querySelectorAll(".meta,.addr")].find(el=>/📍/.test(el.textContent));
+    const address=addressNode?addressNode.textContent.replace(/^.*?📍\\s*/,"").trim():"";
+    const query=[name,address].filter(Boolean).join(" ");
+    if(!query)return;
+    card.querySelectorAll('a[href*="google.com/maps"],a[href*="maps.google.com"]').forEach(a=>{
+      a.href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(query);
+    });
+  });
+}
 const days=[
 {id:"d0",date:"10/8",title:"抵達台東・入住",theme:"晚上抵達｜晚餐尚未選擇",items:[
 {t:"晚上",name:"抵達台東",type:"drive",desc:"10/8 晚上抵達台東後，先完成取車／前往住宿、放置行李與入住。今晚不排緊湊景點，讓隔天都蘭海線可以早點出發。",addr:"臺東市區／住宿地點依訂房資料"},
@@ -251,7 +265,7 @@ function card(x){
       (o.address?'<div class="meta">📍 '+o.address+'</div>':"")+
       (o.hours?'<div class="meta">🕐 '+o.hours+'</div>':"")+
       (o.phone?'<div class="meta">☎️ '+o.phone+'</div>':"")+
-      '<div class="choice-actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(o.address||o.name)+'">導航</a><a class="action" target="_blank" rel="noopener" href="'+maps(o.name+" "+(o.address||""))+'">查看</a></div></div></div>';
+      '<div class="choice-actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(o.name+" "+(o.address||""))+'">導航</a><a class="action" target="_blank" rel="noopener" href="'+maps(o.name+" "+(o.address||""))+'">查看</a></div></div></div>';
   };
 
   if(isRestaurant){
@@ -271,7 +285,7 @@ function card(x){
   return '<article class="card">'+imgTag+
     '<div class="content"><span class="tag">'+kind+'</span><div class="time">'+x.t+'</div><div class="title">'+x.name+'</div>'+
     '<div class="desc">'+x.desc+'</div><div class="addr">📍 '+x.addr+'</div>'+
-    '<div class="actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x.addr)+'">Google 導航</a><button class="action" onclick="alert('+JSON.stringify(opts)+')">看選項</button></div></div></article>';
+    '<div class="actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x.name+" "+x.addr)+'">Google 導航</a><button class="action" onclick="alert('+JSON.stringify(opts)+')">看選項</button></div></div></article>';
 }
 function renderTimeline(){document.querySelector("#timelineTitle").textContent=selectedDay.date+"｜"+selectedDay.title;document.querySelector("#timelineSub").textContent=selectedDay.theme;document.querySelector("#timelineList").innerHTML=selectedDay.items.map(x=>'<div class="item"><span class="dot"></span>'+card(x)+'</div>').join("")}
 function renderFood(){const foods=[];days.forEach(d=>d.items.forEach(x=>{if(x.choices){x.choices.forEach(o=>foods.push({name:o.name,addr:o.address,img:o.img,fallbackImg:o.fallbackImg,detail:o.detail}))}else if(x.type==="food"||x.type==="cafe"){foods.push({name:x.name,addr:x.addr,img:x.img,fallbackImg:x.fallbackImg,detail:x.desc})}}));document.querySelector("#foodGrid").innerHTML=foods.map(x=>'<article class="food-card"><img src="'+(x.img||img.seafood)+'" alt="'+x.name+' 餐點" loading="lazy" onerror="this.onerror=null;this.src=(x.fallbackImg||img.seafood);"><div class="fc"><h3>'+x.name+'</h3><p>'+x.addr+'</p><p>'+x.detail+'</p><p class="source">餐點實拍／公開資料</p></div></article>').join("")}
@@ -303,4 +317,6 @@ function renderFlexRestaurants(){
 function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));document.querySelectorAll(".nav").forEach(n=>n.classList.toggle("active",n.dataset.page===id));window.scrollTo(0,0)}
 document.querySelectorAll(".nav").forEach(n=>n.onclick=()=>{showPage(n.dataset.page);if(n.dataset.page==="timeline")renderTimeline()});
 try{renderTimeline();renderFood();renderFlexRestaurants();document.body.classList.add("app-ready")}catch(e){console.error(e)}
+
+fixRestaurantMapLinks();
 </script></body></html>
