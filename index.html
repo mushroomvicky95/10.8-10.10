@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="version" content="2026-09-20-afternoon-drink-photo-fix-v2"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="app-version" content="restaurant-map-links-name-address-20261009-v1">
+<meta name="version" content="2026-09-20-afternoon-drink-photo-fix-v2"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="app-version" content="google-maps-all-places-query-fix-20261009-v1">
 <meta name="theme-color" content="#f7f4ef">
 <title>台東海線・南迴｜旅遊行程 App</title>
 <style>
@@ -108,7 +108,7 @@ daluan:"https://static.styletc.com/images/content/98/257098/e0df5b40914a3635c33b
 oddo:"https://disk.sharelife.tw/gallery/63234-133065/0a68240222294915.jpg",
 sophie:"https://www.bring-you.info/imgs/2015/08/%E5%8F%B0%E6%9D%B1%E5%BF%85%E5%90%83%E7%BE%8E%E9%A3%9F%E8%98%87%E8%8F%B2%E7%9A%84%E5%B0%8F%E9%85%92%E9%A4%A8-4.jpg"
 };
-const maps=n=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(n);
+const maps=n=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent((n||"").trim()+((n||"").includes("台東")||((n||"").toLowerCase().includes("taitung"))?"":", 臺東縣, Taiwan"));
 function fixRestaurantMapLinks(){
   document.querySelectorAll(".restaurant-choice,.food-card,.flex-restaurant").forEach(card=>{
     const title=card.querySelector("h4,h3,.fc h3");
@@ -311,7 +311,7 @@ function renderFlexRestaurants(){
     '<div class="flex-info"><h4>🍽️ '+x.name+'</h4>'+
     '<div class="dish">'+x.detail+'</div>'+
     '<div class="meta">📍 '+x.address+'</div>'+
-    '<div class="choice-actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x.name+" "+x.address)+'">導航</a></div>'+
+    '<div class="choice-actions"><a class="action primary" target="_blank" rel="noopener" href="'+maps(x.name+", "+x.address)+'">導航</a></div>'+
     '</div></article>').join("");
 }
 function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));document.querySelectorAll(".nav").forEach(n=>n.classList.toggle("active",n.dataset.page===id));window.scrollTo(0,0)}
