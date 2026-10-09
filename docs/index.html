@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><base href="/10.8-10.10/">
 <meta charset="utf-8">
-<meta name="version" content="2026-09-20-afternoon-drink-photo-fix-v2"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="app-version" content="google-maps-all-places-query-fix-20261009-v1">
+<meta name="version" content="2026-09-20-afternoon-drink-photo-fix-v2"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="app-version" content="google-maps-all-places-query-fix-20261009-v2">
 <meta name="theme-color" content="#f7f4ef">
 <title>台東海線・南迴｜旅遊行程 App</title>
 <style>
@@ -116,7 +116,7 @@ function fixRestaurantMapLinks(){
     const name=title.textContent.replace(/^🍽️\\s*/,"").trim();
     const addressNode=[...card.querySelectorAll(".meta,.addr")].find(el=>/📍/.test(el.textContent));
     const address=addressNode?addressNode.textContent.replace(/^.*?📍\\s*/,"").trim():"";
-    const query=[name,address].filter(Boolean).join(" ");
+    const query=[name,address,"臺東縣","Taiwan"].filter(Boolean).join(", ");
     if(!query)return;
     card.querySelectorAll('a[href*="google.com/maps"],a[href*="maps.google.com"]').forEach(a=>{
       a.href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(query);
